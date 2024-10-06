@@ -1,7 +1,7 @@
-package com.devland.assignment.assignment12.comment.dto;
+package com.devland.assignment.assignment12.usercomment.dto;
 
 import com.devland.assignment.assignment12.applicationuser.model.ApplicationUser;
-import com.devland.assignment.assignment12.comment.model.Comment;
+import com.devland.assignment.assignment12.usercomment.model.UserComment;
 
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
@@ -14,20 +14,20 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class CommentRequestDTO {
+public class UserCommentRequestDTO {
     private Long id;
 
     @NotBlank(message = "Comment is Required")
-    private String userComment;
+    private String comment;
 
     @Valid
     private ApplicationUser applicationUser;
 
-    public Comment convertToEntity() {
-        return Comment.builder()
-        .id(this.id)
-        .userComment(this.userComment)
-        .applicationUser(applicationUser)
-        .build();
+    public UserComment convertToEntity() {
+        return UserComment.builder()
+                .id(this.id)
+                .comment(this.comment)
+                .applicationUser(applicationUser)
+                .build();
     }
 }

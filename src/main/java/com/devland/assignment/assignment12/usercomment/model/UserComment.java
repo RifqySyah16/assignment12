@@ -1,4 +1,4 @@
-package com.devland.assignment.assignment12.comment.model;
+package com.devland.assignment.assignment12.usercomment.model;
 
 import java.sql.Timestamp;
 
@@ -6,7 +6,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import com.devland.assignment.assignment12.applicationuser.model.ApplicationUser;
-import com.devland.assignment.assignment12.comment.dto.CommentResponseDTO;
+import com.devland.assignment.assignment12.usercomment.dto.UserCommentResponseDTO;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -26,12 +26,12 @@ import lombok.Setter;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Comment {
+public class UserComment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String userComment;
+    private String comment;
 
     @CreationTimestamp
     private Timestamp createdAt;
@@ -43,10 +43,10 @@ public class Comment {
     @JoinColumn(name = "user_id")
     private ApplicationUser applicationUser;
 
-    public CommentResponseDTO convertToResponse() {
-        return CommentResponseDTO.builder()
+    public UserCommentResponseDTO convertToResponse() {
+        return UserCommentResponseDTO.builder()
                 .id(this.id)
-                .userComment(this.userComment)
+                .comment(this.comment)
                 .createdAt(this.createdAt)
                 .updatedAt(this.updatedAt)
                 .applicationUser(applicationUser)

@@ -16,5 +16,6 @@ public class RegisterationResponseDTO {
     private String name;
     private String username;
     private String email;
+    private String photoPath;
     private String password;
 }

@@ -58,8 +58,8 @@ public class WebSecurityConfigurer {
                                                                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                                 .authorizeHttpRequests(
                                                 request -> request
-                                                                .requestMatchers("/tokens", "/greetings",
-                                                                                "/swagger-ui/**", "/v3/api-docs/**",
+                                                                .requestMatchers("/tokens", "/swagger-ui/**",
+                                                                                "/v3/api-docs/**",
                                                                                 "/error")
                                                                 .permitAll()
                                                                 .requestMatchers(HttpMethod.GET, "/classrooms",

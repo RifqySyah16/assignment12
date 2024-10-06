@@ -1,11 +1,15 @@
 package com.devland.assignment.assignment12.applicationuser.model;
 
+import java.util.List;
+
 import com.devland.assignment.assignment12.applicationuser.dto.RegisterationResponseDTO;
+import com.devland.assignment.assignment12.usercomment.model.UserComment;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -28,16 +32,22 @@ public class ApplicationUser {
     private String username;
 
     private String email;
-    
+
+    private String photoPath;
+
     private String password;
+
+    @OneToMany
+    private List<UserComment> comments;
 
     public RegisterationResponseDTO convertToResponse() {
         return RegisterationResponseDTO.builder()
-        .id(this.id)
-        .name(this.name)
-        .username(this.username)
-        .email(this.email)
-        .password(this.password)
-        .build();
+                .id(this.id)
+                .name(this.name)
+                .username(this.username)
+                .email(this.email)
+                .photoPath(this.photoPath)
+                .password(this.password)
+                .build();
     }
 }
