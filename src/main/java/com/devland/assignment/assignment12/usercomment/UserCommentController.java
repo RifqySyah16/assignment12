@@ -18,9 +18,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.devland.assignment.assignment12.usercomment.dto.UserCommentRequestDTO;
-import com.devland.assignment.assignment12.usercomment.dto.UserCommentResponseDTO;
 import com.devland.assignment.assignment12.usercomment.model.UserComment;
+import com.devland.assignment.assignment12.usercomment.model.dto.UserCommentRequestDTO;
+import com.devland.assignment.assignment12.usercomment.model.dto.UserCommentResponseDTO;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;

@@ -1,4 +1,4 @@
-package com.devland.assignment.assignment12.applicationuser.dto;
+package com.devland.assignment.assignment12.applicationuser.model.dto;
 
 import com.devland.assignment.assignment12.applicationuser.model.ApplicationUser;
 

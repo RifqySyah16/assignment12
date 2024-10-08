@@ -1,40 +1,41 @@
-package com.devland.assignment.assignment12.usercomment.model;
+package com.devland.assignment.assignment12.article.model;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import com.devland.assignment.assignment12.applicationuser.model.ApplicationUser;
 import com.devland.assignment.assignment12.applicationuser.model.dto.RegisterationResponseDTO;
-import com.devland.assignment.assignment12.article.model.Article;
 import com.devland.assignment.assignment12.article.model.dto.ArticleResponseDTO;
-import com.devland.assignment.assignment12.usercomment.model.dto.UserCommentResponseDTO;
+import com.devland.assignment.assignment12.reply.model.Reply;
+import com.devland.assignment.assignment12.usercomment.model.UserComment;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Entity
 @Getter
 @Setter
+@Entity
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class UserComment {
+public class Article {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String comment;
+    private String content;
 
     @CreationTimestamp
     private Timestamp createdAt;
@@ -43,25 +44,23 @@ public class UserComment {
     private Timestamp updatedAt;
 
     @ManyToOne
-    @JoinColumn(name = "user_id")
     private ApplicationUser applicationUser;
 
-    @ManyToOne
-    @JoinColumn
-    private Article article;
+    @OneToMany
+    private List<UserComment> userComments;
 
-    public UserCommentResponseDTO convertToResponse() {
+    @OneToMany
+    private List<Reply> replies;
+
+    public ArticleResponseDTO convertToResponse() {
         RegisterationResponseDTO registerationResponseDTO = this.applicationUser.convertToResponse();
-        ArticleResponseDTO articleResponseDTO = this.article.convertToResponse();
 
-        return UserCommentResponseDTO.builder()
+        return ArticleResponseDTO.builder()
                 .id(this.id)
-                .comment(this.comment)
+                .content(this.content)
                 .createdAt(this.createdAt)
                 .updatedAt(this.updatedAt)
                 .registerationResponseDTO(registerationResponseDTO)
-                .articleResponseDTO(articleResponseDTO)
                 .build();
     }
-
 }

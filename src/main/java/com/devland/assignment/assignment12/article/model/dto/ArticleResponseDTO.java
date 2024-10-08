@@ -1,8 +1,8 @@
-package com.devland.assignment.assignment12.usercomment.dto;
+package com.devland.assignment.assignment12.article.model.dto;
 
 import java.sql.Timestamp;
 
-import com.devland.assignment.assignment12.applicationuser.model.ApplicationUser;
+import com.devland.assignment.assignment12.applicationuser.model.dto.RegisterationResponseDTO;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -15,10 +15,10 @@ import lombok.Setter;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class UserCommentResponseDTO {
+public class ArticleResponseDTO {
     private Long id;
-    private String comment;
+    private String content;
     private Timestamp createdAt;
     private Timestamp updatedAt;
-    private ApplicationUser applicationUser;
+    private RegisterationResponseDTO registerationResponseDTO;
 }

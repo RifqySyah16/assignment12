@@ -2,7 +2,9 @@ package com.devland.assignment.assignment12.applicationuser.model;
 
 import java.util.List;
 
-import com.devland.assignment.assignment12.applicationuser.dto.RegisterationResponseDTO;
+import com.devland.assignment.assignment12.applicationuser.model.dto.RegisterationResponseDTO;
+import com.devland.assignment.assignment12.article.model.Article;
+import com.devland.assignment.assignment12.reply.model.Reply;
 import com.devland.assignment.assignment12.usercomment.model.UserComment;
 
 import jakarta.persistence.Entity;
@@ -38,7 +40,13 @@ public class ApplicationUser {
     private String password;
 
     @OneToMany
-    private List<UserComment> comments;
+    private List<Article> articles;
+
+    @OneToMany
+    private List<UserComment> userComments;
+
+    @OneToMany
+    private List<Reply> replies;
 
     public RegisterationResponseDTO convertToResponse() {
         return RegisterationResponseDTO.builder()

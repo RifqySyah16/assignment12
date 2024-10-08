@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.devland.assignment.assignment12.applicationuser.ApplicationUserService;
-import com.devland.assignment.assignment12.applicationuser.dto.RegisterationRequestDTO;
 import com.devland.assignment.assignment12.applicationuser.model.ApplicationUser;
+import com.devland.assignment.assignment12.applicationuser.model.dto.RegisterationRequestDTO;
 import com.devland.assignment.assignment12.authentication.dto.JwtResponseDTO;
 import com.devland.assignment.assignment12.authentication.dto.LoginRequestDTO;
 import com.devland.assignment.assignment12.authentication.jwt.JwtProvider;

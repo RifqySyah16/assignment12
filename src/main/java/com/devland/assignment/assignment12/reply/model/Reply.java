@@ -1,4 +1,4 @@
-package com.devland.assignment.assignment12.usercomment.model;
+package com.devland.assignment.assignment12.reply.model;
 
 import java.sql.Timestamp;
 
@@ -9,6 +9,8 @@ import com.devland.assignment.assignment12.applicationuser.model.ApplicationUser
 import com.devland.assignment.assignment12.applicationuser.model.dto.RegisterationResponseDTO;
 import com.devland.assignment.assignment12.article.model.Article;
 import com.devland.assignment.assignment12.article.model.dto.ArticleResponseDTO;
+import com.devland.assignment.assignment12.reply.model.dto.ReplyResponseDTO;
+import com.devland.assignment.assignment12.usercomment.model.UserComment;
 import com.devland.assignment.assignment12.usercomment.model.dto.UserCommentResponseDTO;
 
 import jakarta.persistence.Entity;
@@ -23,18 +25,18 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Entity
 @Getter
 @Setter
+@Entity
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class UserComment {
+public class Reply {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String comment;
+    private String userReplies;
 
     @CreationTimestamp
     private Timestamp createdAt;
@@ -47,21 +49,26 @@ public class UserComment {
     private ApplicationUser applicationUser;
 
     @ManyToOne
-    @JoinColumn
+    @JoinColumn(name = "article_id")
     private Article article;
 
-    public UserCommentResponseDTO convertToResponse() {
+    @ManyToOne
+    @JoinColumn(name = "comment_id")
+    private UserComment userComment;
+
+    public ReplyResponseDTO convertToResponse() {
         RegisterationResponseDTO registerationResponseDTO = this.applicationUser.convertToResponse();
         ArticleResponseDTO articleResponseDTO = this.article.convertToResponse();
+        UserCommentResponseDTO userCommentResponseDTO = this.userComment.convertToResponse();
 
-        return UserCommentResponseDTO.builder()
+        return ReplyResponseDTO.builder()
                 .id(this.id)
-                .comment(this.comment)
+                .userReplies(this.userReplies)
                 .createdAt(this.createdAt)
                 .updatedAt(this.updatedAt)
                 .registerationResponseDTO(registerationResponseDTO)
                 .articleResponseDTO(articleResponseDTO)
+                .userCommentResponseDTO(userCommentResponseDTO)
                 .build();
     }
-
 }
